@@ -1,0 +1,12 @@
+server:
+  port: 8088
+  context-path: /butler
+
+cupSize: B
+age: 18
+content: "cupSize: ${cupSize}, age: ${age}"
+
+user1:
+  name: zhangsan
+  age: 22
+
