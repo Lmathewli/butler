@@ -16,6 +16,7 @@ public class UserServiceTest {
     private UserService service;
     @Test
     public void findOneTest() {
+        
         User user = service.findOne(11);
         Assert.assertEquals(16, user.getAge());
     }
