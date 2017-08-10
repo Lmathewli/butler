@@ -1,7 +1,6 @@
 package com.mathew.butler.user.model;
 
 import com.mathew.butler.base.model.BaseModel;
-import org.springframework.util.DigestUtils;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.Pattern;
@@ -45,7 +44,8 @@ public class User extends BaseModel{
     }
     
     public void setPassword(String password) {
-        this.password = DigestUtils.md5DigestAsHex(password.getBytes());
+//        this.password = DigestUtils.md5DigestAsHex(password.getBytes());
+        this.password = password;
     }
     
     public String getAccount() {
