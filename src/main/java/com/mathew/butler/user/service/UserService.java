@@ -1,9 +1,10 @@
 package com.mathew.butler.user.service;
 
-import com.mathew.butler.result.Enum.ResultEnum;
+import com.mathew.butler.result.model.Result;
+import com.mathew.butler.result.utils.ResultUtils;
 import com.mathew.butler.user.dao.UserDao;
-import com.mathew.butler.user.exception.UserException;
 import com.mathew.butler.user.model.User;
+import com.mathew.butler.utils.core.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,14 +30,14 @@ public class UserService {
         userB.setName("hiih");
         dao.save(userB);
     }
-    
-    public void getAge(int id) throws UserException {
-        User user = dao.findOne(id);
-        int age = user.getAge();
-        if (age < 20) {
-            throw new UserException(ResultEnum.SCHOOL);
-        } else if (age > 20 && age < 50) {
-            throw new UserException(ResultEnum.WORK);
+
+    public Result loginValid(User user) {
+        String account = user.getAccount();
+        String password = user.getPassword();
+        User userDb = dao.findByAccountEqualsAndPasswordEquals(account, password);
+        if (Validator.isNull(userDb)) {
+            return ResultUtils.fail(-1, "账号或者密码错误");
         }
+        return ResultUtils.success();
     }
 }

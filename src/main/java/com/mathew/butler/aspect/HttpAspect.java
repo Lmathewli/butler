@@ -16,7 +16,7 @@ public class HttpAspect {
     
     private final static Logger logger = LoggerFactory.getLogger(HttpAspect.class);
     
-    @Pointcut("execution(public * com.mathew.butler.user.controller.LoginController.*(..))")
+    @Pointcut("execution(public * com.mathew.butler.user.controller.UserController.*(..))")
     public void point() {
     }
     @Before("point()")
