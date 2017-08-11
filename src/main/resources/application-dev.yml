@@ -9,3 +9,4 @@ user:
   name: zhangsan
   age: 22
 
+spring.devtools.restart.additional-paths: src\\main\\java

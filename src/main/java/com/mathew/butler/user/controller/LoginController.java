@@ -12,6 +12,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -23,8 +24,9 @@ public class LoginController {
     private UserService service;
     
     @PostMapping("/login")
-    public Result login(@Valid User user, BindingResult validatorResult) {
+    public Result login(@Valid User user, HttpServletRequest request, BindingResult validatorResult) {
         Result result = null;
+        System.out.println(user);
         if (validatorResult.hasErrors()) {
             List<ObjectError> errors = validatorResult.getAllErrors();
             return ResultUtils.fail(ResultEnum.FAIL.getErrorCode(), validatorResult.getFieldError().getDefaultMessage());

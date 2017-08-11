@@ -30,7 +30,7 @@ public class User extends BaseModel{
     @Pattern(regexp = "^(13[0-9])|(14[5|7])|(15[0|1|2|3|5|6|7|8|9])|(18[0|1|2|3|5|6|7|8|9])\\d{8}$", message = "手机号格式不正确")
     private String account;
     
-    @Pattern(regexp = "([a-zA-Z0-9]|[_!@#$%^&*_+-=]){6,20}", message = "密码包含小写，大写，数字，且长度6-20")
+//    @Pattern(regexp = "([a-zA-Z0-9]|[_!@#$%^&*+-=]){6,20}", message = "密码包含小写，大写，数字，且长度6-20")
     private String password;
     
     private int age;
@@ -44,7 +44,6 @@ public class User extends BaseModel{
     }
     
     public void setPassword(String password) {
-//        this.password = DigestUtils.md5DigestAsHex(password.getBytes());
         this.password = password;
     }
     
@@ -72,4 +71,19 @@ public class User extends BaseModel{
         this.age = age;
     }
     
+    public int getShopId() {
+        return shopId;
+    }
+    
+    public void setShopId(int shopId) {
+        this.shopId = shopId;
+    }
+    
+    public int getRoleId() {
+        return roleId;
+    }
+    
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
 }

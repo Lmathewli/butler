@@ -17,12 +17,8 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @RequestMapping(value = {"/login", "/"}, method = RequestMethod.GET)
-    public List<User> login() {
-        return dao.findAll();
-    }
     @PostMapping(value = "/users/addUser")
-    public User add(@Valid User user, BindingResult result) {
+    public User add(@RequestBody @Valid User user, BindingResult result) {
         if (result.hasErrors()) {
             System.out.printf(result.getFieldError().getDefaultMessage());
             return new User();
@@ -39,7 +35,7 @@ public class UserController {
         user.setId(id);
         user.setName(name);
         user.setAge(age);
-    
+
         return dao.save(user);
     }
     @DeleteMapping(value = "/users/delete/{id}")
@@ -51,12 +47,12 @@ public class UserController {
     public List<User> findOneByAge(@PathVariable("age") int age) {
         return dao.findByAge(age);
     }
-    
+
     @PostMapping(value = "/users/insertTwo")
     public void insertTwo() {
         service.insertTwo();
     }
-    
+
     @GetMapping("/users/getById/{id}")
     public void getAge(@PathVariable("id") long id) throws Exception {
     }
