@@ -1,3 +1,13 @@
+spring:
+  datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/butler?characterEncoding=utf-8
+      username: root
+      password: mysql
+  jpa:
+     hibernate:
+        ddl-auto: update
+        show-sql: true
 server:
   port: 8080
   context-path: /butler
@@ -10,3 +20,4 @@ user:
   age: 22
 
 spring.devtools.restart.additional-paths: src\\main\\java
+

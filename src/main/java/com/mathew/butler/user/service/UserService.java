@@ -1,10 +1,10 @@
 package com.mathew.butler.user.service;
 
-import com.mathew.butler.result.model.Result;
-import com.mathew.butler.result.utils.ResultUtils;
+import com.mathew.butler.base.result.model.Result;
+import com.mathew.butler.base.result.utils.ResultUtils;
 import com.mathew.butler.user.dao.UserDao;
 import com.mathew.butler.user.model.User;
-import com.mathew.butler.utils.core.Validator;
+import com.mathew.butler.base.core.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

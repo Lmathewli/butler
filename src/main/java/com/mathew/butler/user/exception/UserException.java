@@ -1,6 +1,6 @@
 package com.mathew.butler.user.exception;
 
-import com.mathew.butler.result.Enum.ResultEnum;
+import com.mathew.butler.base.result.Enum.ResultEnum;
 
 public class UserException extends RuntimeException {
     private int errorCode;

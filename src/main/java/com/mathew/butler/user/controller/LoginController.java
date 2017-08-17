@@ -1,8 +1,8 @@
 package com.mathew.butler.user.controller;
 
-import com.mathew.butler.result.Enum.ResultEnum;
-import com.mathew.butler.result.model.Result;
-import com.mathew.butler.result.utils.ResultUtils;
+import com.mathew.butler.base.result.Enum.ResultEnum;
+import com.mathew.butler.base.result.model.Result;
+import com.mathew.butler.base.result.utils.ResultUtils;
 import com.mathew.butler.user.dao.UserDao;
 import com.mathew.butler.user.model.User;
 import com.mathew.butler.user.service.UserService;
