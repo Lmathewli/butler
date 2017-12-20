@@ -1,43 +1,53 @@
 package com.mathew.butler.user.service;
 
-import com.mathew.butler.base.result.model.Result;
-import com.mathew.butler.base.result.utils.ResultUtils;
-import com.mathew.butler.user.dao.UserDao;
 import com.mathew.butler.user.model.User;
-import com.mathew.butler.base.core.Validator;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-@Service
-public class UserService {
+import java.util.Collection;
+import java.util.List;
+
+public interface UserService {
     
-    @Autowired
-    private UserDao dao;
-
-    public User findOne(int id) {
-        return dao.findOne(id);
-    }
-    @Transactional
-    public void insertTwo() {
-        User userA = new User();
-        userA.setAge(26);
-        userA.setName("h");
-        dao.save(userA);
-        
-        User userB = new User();
-        userB.setAge(27);
-        userB.setName("hiih");
-        dao.save(userB);
-    }
-
-    public Result loginValid(User user) {
-        String account = user.getAccount();
-        String password = user.getPassword();
-        User userDb = dao.findByAccountEqualsAndPasswordEquals(account, password);
-        if (Validator.isNull(userDb)) {
-            return ResultUtils.fail(-1, "账号或者密码错误");
-        }
-        return ResultUtils.success();
-    }
+    /**
+     * 新增，编辑，保存用户
+     * @param user
+     * @return
+     */
+    User saveUser(User user);
+    
+    /**
+     * 注册用户
+     * @param user
+     * @return
+     */
+    User registerUser(User user);
+    
+    /**
+     * 删除用户
+     * @param id
+     */
+    void removeUser(long id);
+    
+    /**
+     * 根据用户名进行分页
+     * @param id
+     * @return
+     */
+    User getUserById(long id);
+    
+    /**
+     * 根据用户名进行分页模糊查询
+     * @param name
+     * @param pageable
+     * @return
+     */
+    Page<User> listUsersByNameLike(String name, Pageable pageable);
+    
+    /**
+     * 更具名称列表查询
+     * @param usernames
+     * @return
+     */
+    List<User> listUsersByUsernames(Collection<String> usernames);
 }

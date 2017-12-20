@@ -1,6 +1,6 @@
 package com.mathew.butler.user.controller;
 
-import com.mathew.butler.user.dao.UserDao;
+import com.mathew.butler.user.dao.UserRepository;
 import com.mathew.butler.user.model.User;
 import com.mathew.butler.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 public class UserController {
     @Autowired
-    private UserDao dao;
+    private UserRepository dao;
     @Autowired
     private UserService service;
 
@@ -25,22 +25,13 @@ public class UserController {
         }
         return dao.save(user);
     }
-    @GetMapping(value = "/users/find/{id}")
-    public User findOne(@PathVariable("id") Integer id) {
-        return dao.findOne(id);
-    }
     @PostMapping(value = "/users/updateOne/{id}")
     public User updateOne(@PathVariable("id") long id, String name, int age) {
         User user = new User();
         user.setId(id);
         user.setName(name);
         user.setAge(age);
-
         return dao.save(user);
-    }
-    @DeleteMapping(value = "/users/delete/{id}")
-    public void deleteOne(@PathVariable("id") Integer id) {
-        dao.delete(id);
     }
 
     @GetMapping(value = "/users/findByAge/{age}")
@@ -48,10 +39,6 @@ public class UserController {
         return dao.findByAge(age);
     }
 
-    @PostMapping(value = "/users/insertTwo")
-    public void insertTwo() {
-        service.insertTwo();
-    }
 
     @GetMapping("/users/getById/{id}")
     public void getAge(@PathVariable("id") long id) throws Exception {

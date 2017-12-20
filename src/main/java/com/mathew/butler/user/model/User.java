@@ -1,12 +1,19 @@
 package com.mathew.butler.user.model;
 
 import com.mathew.butler.base.model.BaseModel;
+import com.mathew.butler.base.security.config.Authority;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.Pattern;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
-public class User extends BaseModel{
+public class User extends BaseModel implements UserDetails {
     /**
      @null           验证对象是否为空
      @notnull     验证对象是否为非空
@@ -39,8 +46,51 @@ public class User extends BaseModel{
     
     private int roleId;
     
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_authority", joinColumns =  @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
+    private List<Authority> authorities;
+
+    public void setAuthorities(List<Authority> authorities) {
+        this.authorities = authorities;
+    }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+    
     public String getPassword() {
         return password;
+    }
+    
+    @Override
+    public String getUsername() {
+        return name;
+    }
+    
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+    
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+    public void setEncodePassword(String password) {
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encodePasswd = encoder.encode(password);
+        this.password = encodePasswd;
+    }
+    
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+    
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
     
     public void setPassword(String password) {
@@ -86,4 +136,5 @@ public class User extends BaseModel{
     public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
+    
 }

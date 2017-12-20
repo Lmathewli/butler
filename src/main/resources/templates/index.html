@@ -1,1 +1,22 @@
-<h2>hi thymeleaf</h2>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="/fragments/header :: header">
+</head>
+<body>
+<!-- Page Content -->
+<div class="container blog-content-container">
+
+</div>
+<!-- /.container -->
+
+
+<div th:replace="/fragments/footer :: footer">...</div>
+
+<!-- JavaScript -->
+<script src="../../js/index.js" th:src="@{/js/index.js}"></script>
+
+
+</body>
+</html>

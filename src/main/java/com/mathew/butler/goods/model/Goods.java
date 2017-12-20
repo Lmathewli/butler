@@ -22,9 +22,7 @@ public class Goods extends BaseModel {
     
     private BigDecimal leaseOutPrice;
     
-    private BigDecimal washInPrice;
-    
-    private BigDecimal washOutPrice;
+    private BigDecimal dailyPrice;
     
     private int num;
     
@@ -37,6 +35,14 @@ public class Goods extends BaseModel {
     private int orderBy;
     
     private Date createTime;
+    
+    public BigDecimal getDailyPrice() {
+        return dailyPrice;
+    }
+    
+    public void setDailyPrice(BigDecimal dailyPrice) {
+        this.dailyPrice = dailyPrice;
+    }
     
     public int getStatus() {
         return status;
@@ -92,22 +98,6 @@ public class Goods extends BaseModel {
     
     public void setLeaseOutPrice(BigDecimal leaseOutPrice) {
         this.leaseOutPrice = leaseOutPrice;
-    }
-    
-    public BigDecimal getWashInPrice() {
-        return washInPrice;
-    }
-    
-    public void setWashInPrice(BigDecimal washInPrice) {
-        this.washInPrice = washInPrice;
-    }
-    
-    public BigDecimal getWashOutPrice() {
-        return washOutPrice;
-    }
-    
-    public void setWashOutPrice(BigDecimal washOutPrice) {
-        this.washOutPrice = washOutPrice;
     }
     
     public int getNum() {

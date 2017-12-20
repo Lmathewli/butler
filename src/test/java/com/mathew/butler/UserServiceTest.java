@@ -1,8 +1,6 @@
 package com.mathew.butler;
 
-import com.mathew.butler.user.model.User;
 import com.mathew.butler.user.service.UserService;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,5 @@ public class UserServiceTest {
     private UserService service;
     @Test
     public void findOneTest() {
-        User user = service.findOne(11);
-        Assert.assertEquals(16, user.getAge());
     }
 }
